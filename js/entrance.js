@@ -9,7 +9,10 @@ $(function(){
 	var $target = $('#entrance');
 	var $key = $('#secomSecret');
 	var d = new Date();
-	if (d.isHoliDay()) {
+	var isCloseEntranse = function(){
+		return d.getHours() < 7 || d.getHours() >= 19;
+	}
+	if (d.isHoliDay() || isCloseEntranse()) {
 		var _key = '&#42;&#49;12&#50;&#35;';
 		$key.html(_key);
 		$target.show();
