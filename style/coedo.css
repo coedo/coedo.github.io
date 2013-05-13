@@ -71,8 +71,14 @@ header{
 	background: #e27f1d;
 }
 
+.totop{
+	border: 4px solid #e27f1d;
+	border-radius: 3px;
+	padding: 8px;
+}
 .totop a, .totop a:visited{
-	background: #e27f1d;
+	color: #e27f1d;
+	background: transparent;
 }
 
 /* Responsive */

@@ -1858,16 +1858,14 @@ footer .copy{
 
 .totop a, .totop a:visited{
 	display: block;
-	width: 30px;
-	height: 30px;
-	color: #fff;
+	width: 48px;
+	height: 96px;
 	text-align: center;
-	line-height: 30px;
+	line-height: 48px;
 	text-decoration: none;
 }
 
 .totop a:hover {
-	color: #fff;
 	text-decoration: none;
 }
 
