@@ -1,0 +1,65 @@
+<html>
+<meta charset="utf-8">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- facabook like -->
+<script type="text/javascript">
+	var appId = '543429589018307';
+	var coedo_id = '174662296006386';
+	window.fbAsyncInit = function () {
+		// init
+		FB.init({
+			appId: appId,
+			status: true,
+			cookie: true,
+			oauth: true,
+			xfbml: true
+		});
+
+		// login
+		$("#facebook_login").click(function () {
+			FB.login(function (resp) {
+				if (resp.authResponse) {
+					checkLike();
+				}
+			}, {perms: 'read_stream'});
+		});
+
+		var checkLike = function () {
+			FB.api(
+					{
+						method : 'fql.query',
+						query : 'SELECT uid,page_id,type,profile_section,created_time FROM page_fan WHERE uid = me() AND page_id = ' + coedo_id
+					},
+					function(response) {
+						//console.log(response);
+						var form = '<form name="regist_form" id="regist" method="post" action="regist.php">';
+						var result = 'ng'
+						if (response.length > 0 && response[0].page_id == '[page_id]') {
+							// ok
+							result = 'ok'
+							form += '<input type="hidden" name="uid" value="'+response[0].uid+'" />';
+						}
+						form += '<input type="hidden" name="mode" value="'+result+'" />';
+						form += '</form>';
+						$('body').append(form);
+						$('#regist').submit();
+
+					});
+		}
+
+	};
+
+	// javascript SDK load
+	$(function () {
+		// script create
+		(function () {
+			var e = document.createElement('script');
+			e.src = '//connect.facebook.net/ja_JP/all.js';
+			e.async = true;
+			document.getElementById('fb-root').appendChild(e);
+		} ());
+	});
+
+</script>
+<div id="fb-root"></div>
+</html>
