@@ -17,13 +17,11 @@
 		});
 
 		// login
-		$("#facebook_login").click(function () {
-			FB.login(function (resp) {
-				if (resp.authResponse) {
-					checkLike();
-				}
-			}, {perms: 'read_stream'});
-		});
+		FB.login(function (resp) {
+			if (resp.authResponse) {
+				checkLike();
+			}
+		}, {perms: 'read_stream'});
 
 		var checkLike = function () {
 			FB.api(
