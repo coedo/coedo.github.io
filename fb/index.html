@@ -5,6 +5,7 @@
 <script type="text/javascript">
 	var appId = '543429589018307';
 	var coedo_id = '174662296006386';
+	var locationProtocol = document.location.protocol === 'file:' ? 'http:' : document.location.protocol;
 	window.fbAsyncInit = function () {
 		// init
 		FB.init({
@@ -42,7 +43,7 @@
 		// script create
 		(function () {
 			var e = document.createElement('script');
-			e.src = 'http:' + '//connect.facebook.net/ja_JP/all.js';
+			e.src = locationProtocol + '//connect.facebook.net/ja_JP/all.js';
 			e.async = true;
 			document.getElementById('fb-root').appendChild(e);
 		} ());
