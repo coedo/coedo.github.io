@@ -27,6 +27,14 @@
 			FB.api(
 					{
 						method : 'fql.query',
+						query : 'SELECT user_id FROM like WHERE object_id=' + coedo_id
+					},
+					function(response) {
+						console.log(response);
+					});
+			FB.api(
+					{
+						method : 'fql.query',
 						query : 'SELECT uid,page_id,type,profile_section,created_time FROM page_fan WHERE uid = me() AND page_id = ' + coedo_id
 					},
 					function(response) {
