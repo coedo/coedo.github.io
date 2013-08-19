@@ -21,7 +21,7 @@
 			if (resp.authResponse) {
 				checkLike();
 			}
-		}, {perms: 'read_stream'});
+		}, {scope: 'read_stream'});
 
 		var checkLike = function () {
 			FB.api(
