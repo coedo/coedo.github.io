@@ -194,6 +194,10 @@ transition:background 1s ease;
 text-align:center;
 }
 
+.social i.book{
+	background:darkred;
+}
+
 .social i.facebook{
 background:#3c5b9b;
 }
