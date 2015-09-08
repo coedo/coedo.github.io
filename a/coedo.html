@@ -10,9 +10,6 @@
 			border: 3px solid black;
 		}
 	</style>
-	<script>
-		...中略...
-	</script>
 </head>
 <body>
 <!--キャンバスの準備（1）-->
@@ -20,5 +17,34 @@
 	<!--Canvas機能に対応していないブラウザへの備え（2）-->
 	Canvas機能に対応したブラウザでアクセスしてください。
 </canvas>
+<div><img id="newImg"></div>
+<script>
+	var cvs = document.getElementById("cv");
+	var ctx = cvs.getContext("2d");
+
+	//canvasにランダムなカラーラインを描く関数
+	function chgCol()
+	{
+		for ( var i = 0 ; i < 9 ; i++ )
+		{
+			var r = Math.floor(Math.random()*256);
+			var g = Math.floor(Math.random()*256);
+			var b = Math.floor(Math.random()*256);
+
+			ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+			ctx.fillRect( 40*i, 0, 40, 240 );
+		}
+	}
+
+	//canvasデータを画像に変換にする関数
+	function chgImg()
+	{
+		var png = cvs.toDataURL();
+		document.getElementById("newImg").src = png;
+	}
+
+	chgCol();
+	chgImg();
+</script>
 </body>
 </html>
