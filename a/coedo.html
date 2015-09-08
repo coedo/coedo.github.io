@@ -3,6 +3,10 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>HTML5 TIPS</title>
+	<meta property="og:title" content="Co-Edo">
+	<meta property="og:description" content="Co-Edoの混雑状況">
+	<meta property="og:url" content="https://www.coworking.tokyo.jp/a/coedo.html">
+	<meta property="og:image" content="" id="ogpimageurl">
 	<!--キャンバスの背景色／枠線を指定（3）-->
 	<style>
 		#cv {
@@ -21,6 +25,7 @@
 <script>
 	var cvs = document.getElementById("cv");
 	var ctx = cvs.getContext("2d");
+	var ogpImage = document.getElementById("ogpimageurl");
 
 	//canvasにランダムなカラーラインを描く関数
 	function chgCol()
@@ -41,8 +46,8 @@
 	{
 		var png = cvs.toDataURL();
 		document.getElementById("newImg").src = png;
+		ogpImage.setAttribute('content', png);
 	}
-
 	chgCol();
 	chgImg();
 </script>
