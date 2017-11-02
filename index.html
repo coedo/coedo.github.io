@@ -491,44 +491,6 @@
 		<span class="pull-right"><a href="http://blog.coworking.tokyo.jp/" target="blog">View All News</a></span>
 	</h4>
 
-	<div id="importBlog">
-		<div class="row-fluid">
-			<div class="span6">
-				<div class="news-item">
-					<div class="news-date coedo-color"></div>
-					<div class="news-title"></div>
-					<div class="news-description"></div>
-					<div class="news-readmore"></div>
-				</div>
-			</div>
-			<div class="span6">
-				<div class="news-item">
-					<div class="news-date coedo-color"></div>
-					<div class="news-title"></div>
-					<div class="news-description"></div>
-					<div class="news-readmore"></div>
-				</div>
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span6">
-				<div class="news-item">
-					<div class="news-date coedo-color"></div>
-					<div class="news-title"></div>
-					<div class="news-description"></div>
-					<div class="news-readmore"></div>
-				</div>
-			</div>
-			<div class="span6">
-				<div class="news-item">
-					<div class="news-date coedo-color"></div>
-					<div class="news-title"></div>
-					<div class="news-description"></div>
-					<div class="news-readmore"></div>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
 
 
@@ -674,33 +636,7 @@
 <script src="js/custom.js"></script>
 <!-- Custom sript -->
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="js/jquery.feedReader.js"></script>
-<script>
-	$(function(){
-		$('#importBlog')
-				.feedReader({url: 'http://blog.coworking.tokyo.jp/feeds/posts/default'})
-				.on('loaded', function(e, result, data){
-					if (!result.error) {
-						var $this = $(this);
-						var $targets = $this.find('.news-item');
-						var toAnchor = function(link, text, target) {
-							text = text || 'Read More <i class="icon-double-angle-right"></i>';
-							target = target || 'blog';
-							return '<a href="' + link + '" target="' + target + '">' + text + '</a>';
-						}
-						$.each(result.feed.entries, function(i, entry){
-							var $target = $targets.eq(i);
-							$target
-									.children('.news-date').html((new Date(entry.publishedDate)).toLocaleDateString()).end()
-									.children('.news-title').html(toAnchor(entry.link, entry.title)).end()
-									.children('.news-description').html(entry.contentSnippet).end()
-									.children('.news-readmore').html(toAnchor(entry.link)).end();
 
-						});
-					}
-				});
-	});
-</script>
 <!--Start of Zopim Live Chat Script-->
 <script type="text/javascript">
 	window.$zopim||(function(d,s){var z=$zopim=function(c){
