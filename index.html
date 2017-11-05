@@ -674,33 +674,30 @@
 <script src="js/custom.js"></script>
 <!-- Custom sript -->
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="js/jquery.feedReader.js"></script>
 <script>
-	$(function(){
-		$('#importBlog')
-				.feedReader({url: 'http://blog.coworking.tokyo.jp/feeds/posts/default'})
-				.on('loaded', function(e, result, data){
-					if (!result.error) {
-						var $this = $(this);
-						var $targets = $this.find('.news-item');
-						var toAnchor = function(link, text, target) {
-							text = text || 'Read More <i class="icon-double-angle-right"></i>';
-							target = target || 'blog';
-							return '<a href="' + link + '" target="' + target + '">' + text + '</a>';
-						}
-						$.each(result.feed.entries, function(i, entry){
-							var $target = $targets.eq(i);
-							$target
-									.children('.news-date').html((new Date(entry.publishedDate)).toLocaleDateString()).end()
-									.children('.news-title').html(toAnchor(entry.link, entry.title)).end()
-									.children('.news-description').html(entry.contentSnippet).end()
-									.children('.news-readmore').html(toAnchor(entry.link)).end();
-
-						});
-					}
-				});
-	});
+function import_blog_entries(json) {
+	if (json.feed) {
+		var $targets = $('#importBlog').find('.news-item');
+		var toAnchor = function(link, text, target) {
+			text = text || 'Read More <i class="icon-double-angle-right"></i>';
+			target = target || 'blog';
+			return '<a href="' + link + '" target="' + target + '">' + text + '</a>';
+		}
+		$.each(json.feed.entry, function(i, _entry){
+			var $target = $targets.eq(i);
+			$target
+					.children('.news-date').html((new Date(_entry.published.$t)).toLocaleDateString('ja-JP')).end()
+					.children('.news-title').html(toAnchor(_entry.link[2].href, _entry.title.$t)).end()
+					.children('.news-description').html(jQuery('<div />').html(_entry.content.$t).text().substr(0, 80)).end()
+					.children('.news-readmore').html(toAnchor(_entry.link[2].href)).end();
+		});
+		if (i >= 3) {
+			return;
+		}
+	}
+}
 </script>
+<script src="http://blog.coworking.tokyo.jp/feeds/posts/default?alt=json-in-script&callback=import_blog_entries"></script>
 <!--Start of Zopim Live Chat Script-->
 <script type="text/javascript">
 	window.$zopim||(function(d,s){var z=$zopim=function(c){
