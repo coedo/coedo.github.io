@@ -681,6 +681,9 @@ function import_blog_entries(json) {
 		var toAnchor = function(link, text, target) {
 			text = text || 'Read More <i class="icon-double-angle-right"></i>';
 			target = target || 'blog';
+			if (link.substr(0, 7) == 'http://') {
+				link = 'https://' + link.substr(7);
+			}
 			return '<a href="' + link + '" target="' + target + '">' + text + '</a>';
 		}
 		$.each(json.feed.entry, function(i, _entry){
